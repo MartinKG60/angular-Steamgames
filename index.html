@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Instant Search</title>
+
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js"></script>
+    <script src="steamgames.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>All Steam Games</h1>
+
+        <div ng-app="GamesInstantSearch" ng-controller="GamesList">
+
+            <div class="controls">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="" method="POST" role="form">
+                            <div class="input-group">
+                                <input type="search" id="search" class="form-control" ng-model="search">
+                                <div class="input-group-addon">Found {{(games | filter:search).length}} of {{games.length}}</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result">
+                <div class="game" ng-repeat="game in games | filter:search | orderBy:'released' | limitTo:50">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <a href="http://store.steampowered.com/app/{{game.gameid}}/?snr=1_7_7_230_150_1" target="_blank">
+                                <img ng-src="{{game.image}}" alt="Click to play {{game.title}}" title="Click to play {{game.title}}" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <a href="http://store.steampowered.com/app/{{game.gameid}}/?snr=1_7_7_230_150_1" target="_blank">
+                                <h4>{{game.title}}</h4>
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="date">
+                                {{game.released | jsDate | date:"dd-MM-yyyy"}}
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="price pull-right">
+                                {{game.price}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

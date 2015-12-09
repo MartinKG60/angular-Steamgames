@@ -1,0 +1,29 @@
+body {
+    background: #eee;
+}
+
+.controls {
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.container {
+    background: white;
+}
+
+.container .row blockquote {
+    border-left: 0px !Important;
+}
+
+.game {
+    padding-top: 10px;
+    /* min-height: 420px;*/
+}
+
+.result>div.col-md-4 {
+    min-height: 550px;
+}
+
+.result>div.col-md-6 {
+    min-height: 120px;
+}
